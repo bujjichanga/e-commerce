@@ -1,0 +1,15 @@
+const [departments, setdepartments] = usestate([]);
+const [selecteddept, setselecteddept]=usestate('');
+useeffect(() => {
+ axios.get('http://localhost:3001/departments').then(res => setdepartments(res.data));
+ }, []);
+const handlefilter = (e) => {
+  setselecteddept(e.target.value);
+  axios.get('http.//localhost:30001/products?department_id=${e.target.value}').then(res => setproducts(res.data));
+  };
+  <select onchange={handfilter} value={selecteddept}>
+    <option value="">all</option>
+    {departments.map(d => (
+     <option key ={d.id} value={selecteddept}>
+     ))}
+</select>
