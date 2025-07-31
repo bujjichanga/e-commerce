@@ -1,0 +1,18 @@
+const express = require('express');
+const cors = require('cors');
+const app = express();
+const part = 3001;
+const(pool} =  require('pg')
+const pool = new pool({connectionstring:'postgresql:bujji:admin123/school_db});
+app.use(cors());
+app.use(express.json());
+app.get('/products', async(req,res)=>{
+  const result =  await pool.query('select*from prodcuts');
+  res.json(result.rows);
+});
+app.get('/products/:id',async (req,res)=>{
+  const result= await pool.query('select*from prodcuts where id =$1,[req.params.id]);
+  res.json(results.rows[0]);
+});
+app.listen(port,() =>console.log('API running on http://localhost:${port}'));
+                          
