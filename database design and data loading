@@ -1,0 +1,27 @@
+--sql schema
+  cretae table products(
+  id serial primary key,
+  name varchar(100),
+  description text;
+  price decimal(10,2),
+  department varchar(50),
+  image_url text
+  );
+//csv load script(node.js)
+const fs=require('fs');
+const csv =require('csv-parser');
+const{client}=require('pg');
+const client= new client({
+  user:'bujji',
+  host:'bujji',
+  database:'school_db',
+  password:'admin123',
+  port:5432,
+});
+client.connect();
+fs.createreadstream('prooducts.csv').pip(csv()).on('data',async(row)=> {
+  await clent.query('insert into products(name,description,price,department,image_url) values($1,$2,$3,$4,$5)',[row.name,row.description,row.price,row.department,row.image_url]);
+})
+  .on('end', ()=> { console.log('csv loaded');
+                   clent.end();
+                  });
