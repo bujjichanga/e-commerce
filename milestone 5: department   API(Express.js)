@@ -1,0 +1,4 @@
+app.get('/departments', async(req, res) => {
+  const result = await pool.query('select * from departments');
+  res.json(result.rows);
+});
