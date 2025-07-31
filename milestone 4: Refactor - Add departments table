@@ -1,0 +1,8 @@
+--sql
+create table departments(
+id serial primary key,
+name varchar(50)
+);
+alter table products add departments_id int;
+alter table products drop column department;
+alter table products add constraint fk_department foreign key(department_id) references departments(id);
